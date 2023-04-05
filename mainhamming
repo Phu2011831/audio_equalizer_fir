@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+// Hàm tính s? bit ki?m tra c?n thi?t
+int calc_num_check_bits(int m) {
+    int r = 1;
+    while (pow(2, r) < m + r + 1) { 
+        r++;
+    }
+    return r;
+}
+
+// Hàm thêm các bit ki?m tra vào thông di?p
+void add_check_bits(char* msg, int m, int r) {
+    char encoded_msg[m + r + 1];
+    int j = 0;
+    for (int i = 1; i <= m + r; i++) {
+        if (i == pow(2, j)) {
+            encoded_msg[i - 1] = '0';
+            j++;
+        } else {
+            encoded_msg[i - 1] = msg[j];
+            j++;
+        }
+    }
+    encoded_msg[m + r] = '\0';
+    strcpy(msg, encoded_msg);
+}
+
+// Hàm tính giá tr? bit ki?m tra
+int calc_check_bit(char* msg, int m, int r, int k) {
+    int check_bit = 0;
+    for (int j = 1; j <= m + r; j++) {
+        if (j & (1 << k)) {
+            check_bit ^= (msg[m + r - j] - '0');
+        }
+    }
+    return check_bit;
+}
+
+// Hàm ki?m tra và s?a l?i
+void correct_error(char* msg, int m, int r) {
+    int error_bit = 0;
+    for (int i = 0; i < r; i++) {
+        int k = pow(2, i);
+        int check_bit = calc_check_bit(msg, m, r, i);
+        error_bit += check_bit * k;
+    }
+    if (error_bit != 0) {
+        int index = m + r - error_bit;
+        msg[index] = (msg[index] == '0') ? '1' : '0';
+    }
+}
+
+// Hàm s?a l?i b?ng mã Hamming
+void hamming_code(char* msg, int num_check_bits) {
+    int m = strlen(msg);
+    int r = calc_num_check_bits(m);
+    add_check_bits(msg, m, r);
+    for (int i = 0; i < r; i++) {
+        int k = pow(2, i);
+        int check_bit = calc_check_bit(msg, m, r, i);
+        msg[m + r - k] = check_bit + '0';
+    }
+    correct_error(msg, m, r);
+}
+
+// Hàm in ra chu?i bit du?i d?ng string
+void print_binary_string(char* msg, int length) {
+    for (int i = 0; i < length; i++) {
+        printf("%c", msg[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    char msg[100];
+    int num_check_bits;
+    printf("Enter message to encode and check: ");
+    scanf("%s", msg);
+    printf("Enter number of check bits to use: ");
+    scanf("%d", &num_check_bits);
+    printf("Original message: ");
+    print_binary_string(msg, strlen(msg));
+	hamming_code(msg, num_check_bits);
+    printf("Encoded message: ");
+    print_binary_string(msg, strlen(msg));
+    printf("Enter received message to decode and correct: ");
+    scanf("%s", msg);
+    printf("Received message: ");
+    print_binary_string(msg, strlen(msg));
+    correct_error(msg, strlen(msg) - num_check_bits, num_check_bits);
+    printf("Corrected message: ");
+    print_binary_string(msg, strlen(msg));
+    return 0;
+}
+
