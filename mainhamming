@@ -98,5 +98,5 @@ int main() {
 
 /* VD trong sách: Enter code = 1101
 	enter num check bits : 3
-	enter received message : 1000101
+	enter received message : 1000101 - mã cần kiểm tra
 KQ:	Corrected message: 1010101 - giống với đáp án trong sách trang 140*/
