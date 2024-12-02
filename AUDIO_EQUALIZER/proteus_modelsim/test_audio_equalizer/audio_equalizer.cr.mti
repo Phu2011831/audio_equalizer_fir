@@ -1,0 +1,24 @@
+C:/altera/13.1/test_audio_equalizer/audio_equalizer.sv {1 {vlog -work work -sv C:/altera/13.1/test_audio_equalizer/audio_equalizer.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module audio_equalizer
+
+Top level modules:
+	audio_equalizer
+
+} {} {}} C:/altera/13.1/test_audio_equalizer/audio_equalizer_tb.sv {1 {vlog -work work -sv C:/altera/13.1/test_audio_equalizer/audio_equalizer_tb.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module audio_equalizer_tb
+
+Top level modules:
+	audio_equalizer_tb
+
+} {} {}} C:/altera/13.1/test_audio_equalizer/FIR.sv {1 {vlog -work work -sv C:/altera/13.1/test_audio_equalizer/FIR.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module FIR
+-- Compiling module multi
+-- Compiling module my_DFF
+
+Top level modules:
+	FIR
+
+} {} {}}

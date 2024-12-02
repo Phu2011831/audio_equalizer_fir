@@ -1,0 +1,15 @@
+`ifndef CONSTANTS
+`define CONSTANTS
+
+`define ORDER_FIR 		64
+`define GAIN_BAND_1		9
+`define GIAN_BAND_2		8
+`define GIAN_BAND_3		7
+`define GIAN_BAND_4		6
+`define GIAN_BAND_5		5
+`define GIAN_BAND_6		4
+`define GIAN_BAND_7		3
+`define GIAN_BAND_8		2
+`define GIAN_BAND_9		1
+
+`endif
